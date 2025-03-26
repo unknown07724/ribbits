@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ribbits - Home</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS here -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to Ribbits</h1>
+        <nav>
+            <a href="upload.html">Upload Ribbit</a> |
+            <a href="channel.html">My Channel</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Latest Ribbits</h2>
+        <div id="ribbit-list"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ribbits | All rights reserved</p>
+    </footer>
+
+    <script>
+        async function loadRibbits() {
+            const response = await fetch('shorts.json');  // JSON file with Ribbit metadata
+            const ribbits = await response.json();
+
+            const ribbitList = document.getElementById("ribbit-list");
+            ribbits.forEach(ribbit => {
+                const div = document.createElement("div");
+                div.classList.add("ribbit-item");
+                div.innerHTML = `
+                    <h3><a href="ribbit.html?id=${ribbit.id}">${ribbit.title}</a></h3>
+                    <p>${ribbit.description}</p>
+                    <p><strong>Tags:</strong> ${ribbit.tags.join(", ")}</p>
+                    <p><strong>Uploaded by:</strong> <a href="channel.html?user=${ribbit.author}">${ribbit.author}</a></p>
+                `;
+                ribbitList.appendChild(div);
+            });
+        }
+
+        loadRibbits();
+    </script>
+</body>
+</html>
