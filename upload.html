@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Your Ribbit</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Upload Your Ribbit</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="channel.html">My Channel</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Upload your Ribbit</h2>
+        <form id="uploadForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="tags">Tags (comma separated):</label>
+            <input type="text" id="tags" name="tags" required>
+
+            <label for="video">Select Video:</label>
+            <input type="file" id="video" name="video" accept="video/*" required>
+
+            <button type="submit">Upload Ribbit</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ribbits | All rights reserved</p>
+    </footer>
+
+    <script>
+        // Function to generate a unique ID for each Ribbit
+        function generateRibbitID() {
+            return 'ribbit' + Math.random().toString(36).substring(2, 10);
+        }
+
+        // Handle the upload form
+        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            // Collect form data
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const tags = document.getElementById('tags').value.split(',').map(tag => tag.trim());
+            const videoFile = document.getElementById('video').files[0];
+            const videoURL = URL.createObjectURL(videoFile);  // Example, you'd upload this somewhere in a real app
+
+            // Generate a unique ID for this Ribbit
+            const ribbitID = generateRibbitID();
+            
+            // Example: Fetch current users.json and shorts.json (Here, we're simulating the process)
+            let usersData = await fetch('users.json').then(response => response.json());
+            let shortsData = await fetch('shorts.json').then(response => response.json());
+
+            // Assume the logged-in user's username is "JaneDoe"
+            const currentUser = 'JaneDoe';
+
+            // Create Ribbit metadata
+            const ribbitMetadata = {
+                id: ribbitID,
+                title: title,
+                description: description,
+                tags: tags,
+                url: videoURL,
+                author: currentUser
+            };
+
+            // Store the Ribbit metadata in localStorage
+            localStorage.setItem('ribbitMetadata', JSON.stringify(ribbitMetadata));
+
+            // Send the Ribbit data to the webhook (simulated here)
+            await fetch('https://your-webhook-url.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(ribbitMetadata)
+            });
+
+            alert('Ribbit uploaded successfully! Awaiting approval.');
+            window.location.href = 'index.html';  // Redirect to home page after upload
+        });
+    </script>
+</body>
+</html>
