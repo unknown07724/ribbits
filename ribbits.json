@@ -6,5 +6,21 @@
         "tags": ["Meme", "Snail"],
         "url": "/ribbits/ribbits/1.mov",
         "author": "Unknown_Memelord69420"
+    },
+    {
+        "id": "ribbit002",
+        "title": "SNAUL!!!",
+        "description": "snail time",
+        "tags": ["Meme", "Snail"],
+        "url": "/ribbits/ribbits/2.mp4",
+        "author": "Unknown_Memelord69420"
+    },
+    {
+        "id": "ribbit002",
+        "title": "SNAUL!!!",
+        "description": "snail time",
+        "tags": ["Meme", "Snail"],
+        "url": "/ribbits/ribbits/3.mp4",
+        "author": "Unknown_Memelord69420"
     }
 ]
