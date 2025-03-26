@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ribbit Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="upload.html">Upload Ribbit</a> |
+            <a href="channel.html">My Channel</a>
+        </nav>
+    </header>
+
+    <main id="ribbit-details">
+        <!-- Ribbit details will be injected here -->
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ribbits | All rights reserved</p>
+    </footer>
+
+    <script>
+        async function loadRibbit() {
+            // Extract the Ribbit ID from the query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const ribbitId = urlParams.get('id');
+
+            // Fetch Ribbits metadata and find the specific Ribbit by ID
+            const response = await fetch('shorts.json');
+            const ribbits = await response.json();
+            const ribbit = ribbits.find(r => r.id === ribbitId);
+
+            if (ribbit) {
+                // Populate the page with the Ribbit details
+                const ribbitDetails = document.getElementById("ribbit-details");
+                ribbitDetails.innerHTML = `
+                    <h2>${ribbit.title}</h2>
+                    <p><strong>Description:</strong> ${ribbit.description}</p>
+                    <p><strong>Tags:</strong> ${ribbit.tags.join(", ")}</p>
+                    <p><strong>Uploaded by:</strong> <a href="channel.html?user=${ribbit.author}">${ribbit.author}</a></p>
+                    <video controls>
+                        <source src="${ribbit.url}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                `;
+            } else {
+                // If Ribbit not found, show an error message
+                const ribbitDetails = document.getElementById("ribbit-details");
+                ribbitDetails.innerHTML = "<p>Ribbit not found.</p>";
+            }
+        }
+
+        loadRibbit();
+    </script>
+</body>
+</html>
