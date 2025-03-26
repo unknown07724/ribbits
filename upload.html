@@ -41,7 +41,7 @@
     <script>
         // Function to generate a unique ID for each Ribbit
         function generateRibbitID() {
-            return 'ribbit' + Math.random().toString(36).substring(2, 10);
+            return Math.random().toString(36).substring(2, 10);
         }
 
         // Handle the upload form
@@ -79,7 +79,7 @@
             localStorage.setItem('ribbitMetadata', JSON.stringify(ribbitMetadata));
 
             // Send the Ribbit data to the webhook (simulated here)
-            await fetch('https://your-webhook-url.com', {
+            await fetch('https://l.webhook.party/hook/SEnagbYVYdLCOvPwyiHkxpZgqfilRXk5F5%2Biy2%2FBfICuoK8ydJW%2FtDgb9zQi16fy%2BMEyV4AduA%2FSeOWQ9%2F2f%2FH4pSWYLeKIj0MpGabXUzreJxlbcZuX4y0v6tJWqX%2F2Jd3TPr7i4k2z8R9JVmorxBU3%2FQUMZZjFhE0KFdFEuWH%2FWpuRe%2BPo1GIC2WA%2BohLnAh1ePiXcms8c2XpODUP0aDh8bvwV8YvLsi8fVm70QjCP7gaKTZ64pGIkAn9JgQVrBzyrUIKMddUuYrmyEdBPXVZckPeYppl8F8DRZ4MO7qKhbOJRufFXjkar32yj5MjFXtE4U74ZXC%2B%2FAp81d6GZ7kUwi2bpc1omomHjGa7zvHaKiMvmJrWLOz%2Fomss0JZhhk8uWrE5U0QvI%3D/ZfGrZ2AQJJZyq9D5', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
