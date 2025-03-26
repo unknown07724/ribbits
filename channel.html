@@ -36,6 +36,7 @@
         // Function to fetch Ribbits uploaded by the user (based on the username from the query parameter)
         async function loadUserRibbits() {
             const username = getQueryParam('username');  // Get the username from URL query
+            console.log("Fetched Username: ", username);  // Debugging log to check username
             if (!username) {
                 alert('No username provided in the URL!');
                 return;
@@ -73,3 +74,4 @@
     </script>
 </body>
 </html>
+
