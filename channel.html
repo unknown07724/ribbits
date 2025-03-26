@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User's Channel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="channelName">User's Ribbits Channel</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="upload.html">Upload Ribbit</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Ribbits</h2>
+        <div id="ribbitList">
+            <!-- Ribbits will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ribbits | All rights reserved</p>
+    </footer>
+
+    <script>
+        // Get the username from the query parameters in the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Function to fetch Ribbits uploaded by the user (based on the username from the query parameter)
+        async function loadUserRibbits() {
+            const username = getQueryParam('username');  // Get the username from URL query
+            if (!username) {
+                alert('No username provided in the URL!');
+                return;
+            }
+
+            // Simulating fetching Ribbits data (replace with actual fetch in production)
+            const ribbits = await fetch('ribbits.json').then(response => response.json());
+            
+            const userRibbits = ribbits.filter(ribbit => ribbit.author === username);
+
+            // Display the username in the header
+            document.getElementById('channelName').textContent = `${username}'s Ribbits Channel`;
+
+            const ribbitList = document.getElementById('ribbitList');
+            if (userRibbits.length === 0) {
+                ribbitList.innerHTML = '<p>No Ribbits uploaded by this user yet.</p>';
+            } else {
+                userRibbits.forEach(ribbit => {
+                    const ribbitDiv = document.createElement('div');
+                    ribbitDiv.classList.add('ribbit');
+                    ribbitDiv.innerHTML = `
+                        <h3>${ribbit.title}</h3>
+                        <p>${ribbit.description}</p>
+                        <video src="${ribbit.url}" controls></video>
+                        <p>Tags: ${ribbit.tags.join(', ')}</p>
+                        <p>Uploaded by: ${ribbit.author}</p>
+                    `;
+                    ribbitList.appendChild(ribbitDiv);
+                });
+            }
+        }
+
+        // Call the function to load Ribbits based on the username from the query
+        loadUserRibbits();
+    </script>
+</body>
+</html>
