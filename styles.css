@@ -1,0 +1,167 @@
+/* General reset for consistent styling across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and general layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2em;
+}
+
+header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content area */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ribbit list and individual ribbit styling */
+#ribbitList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.ribbit {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ribbit h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.ribbit p {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.ribbit video {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.ribbit .tags {
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* Upload page form styling */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form input[type="text"],
+form input[type="file"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+/* Home page styling */
+#ribbitPreview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ribbitPreview video {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#ribbitPreview .tags {
+    font-size: 1em;
+    color: #333;
+    margin-top: 10px;
+}
+
+#ribbitPreview p {
+    margin-top: 10px;
+}
+
+/* Channel page specific styles */
+#channelName {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#ribbitList {
+    margin-top: 20px;
+}
+
+.ribbit video {
+    height: auto;
+    max-height: 400px;
+}
