@@ -29,7 +29,7 @@
             const ribbitId = urlParams.get('id');
 
             // Fetch Ribbits metadata and find the specific Ribbit by ID
-            const response = await fetch('shorts.json');
+            const response = await fetch('ribbit.json');
             const ribbits = await response.json();
             const ribbit = ribbits.find(r => r.id === ribbitId);
 
